@@ -11,7 +11,8 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author wrkerber
+ * @author Walter Kerber - 554514
+ * @author Gustavo Miorando - 573000
  */
 public class localizadorEmail
 {
