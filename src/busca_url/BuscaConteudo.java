@@ -28,8 +28,9 @@ public class BuscaConteudo
     static ArrayList<String> links = new ArrayList();
     static boolean procurandoLinks = true;
     static int paginasBuscadas = 30;
-    static String urlInicial = "http://www.globo.com/";
-    static String palavraBuscada = "lula";
+    static String urlInicial = "https://www.univates.br/";
+    static String palavraBuscada = "aula";
+    static String localGuarda = "C:\\temp\\Teste.txt";
 
     public static void obtemPagina(URL url, File file) throws IOException
     {
@@ -98,7 +99,7 @@ public class BuscaConteudo
         try
         {
             url = new URL(links.get(0));
-            file = new File("C:\\Users\\WalterKerber\\Documents\\Teste.txt");
+            file = new File(localGuarda);
             obtemPagina(url, file);
 
             for (int i = 0; i < links.size(); i++)

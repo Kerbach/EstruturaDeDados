@@ -23,7 +23,7 @@ public class BuscaURL
     static ArrayList<String> links = new ArrayList();
     static boolean procurandoLinks = true;
     static int paginasBuscadas = 30;
-    static String urlInicial = "http://www.techtudo.com.br/";
+    static String urlInicial = "http://globo.com/";
 
     public static void obtemPagina(URL url, File file) throws IOException
     {
