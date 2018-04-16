@@ -13,7 +13,8 @@ import java.util.regex.Pattern;
  *
  * @author Usuario
  */
-public class QuestaoTres {
+public class QuestaoTres
+{
 
     /*
     03. Parse the file below, which lists 1000 packages from a post office,
@@ -24,8 +25,8 @@ public class QuestaoTres {
     onde cada linha indica o código postal do destino seguido pelo custo do frete. 
     Você precisa identificar quais e quantos destinos diferentes estão presentes na lista.
      */
-
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         ArrayList<String> cep = new ArrayList();
 
         // Expressão regular para encontrar emails válidos
@@ -35,33 +36,37 @@ public class QuestaoTres {
         ArquivoLeitura arquivoLeitura = new ArquivoLeitura("packages.txt");
 
         int contador = 1;
-        int CepsDiferentes = 1;
         String linha = arquivoLeitura.lerLinha();
 
-        while (linha != null) {
+        while (linha != null)
+        {
             contador++;
             // Conteúdo da linha a ser carrida
             Matcher matcher = pattern.matcher(linha);
-            while (matcher.find()) {
-                String emailEncontrado = matcher.group();
-                System.out.println("cep encontrado = " + emailEncontrado);
+            
+            while (matcher.find())
+            {
+                String cepEncontrado = matcher.group();
+                System.out.println("Cep encontrado = " + cepEncontrado);
                 // Verifica se é o primeiro
-                if (cep.isEmpty()) {
-                    cep.add(emailEncontrado);
-                } else {
+                if (cep.isEmpty())
+                {
+                    cep.add(cepEncontrado);
+                }
+                else
+                {
                     boolean podeAdicionar = true;
                     // Verificar se o email já está no Array
-                    for (int i = 0; i < cep.size(); i++) {
-                        if (cep.get(i).equalsIgnoreCase(emailEncontrado)) {
+                    for (int i = 0; i < cep.size(); i++)
+                    {
+                        if (cep.get(i).equalsIgnoreCase(cepEncontrado))
+                        {
                             podeAdicionar = false;
                         }
                     }
-                    if (podeAdicionar) {
-                        cep.add(emailEncontrado);
-                        CepsDiferentes =  CepsDiferentes + 1;
-                    } else {
-                        cep.remove(emailEncontrado);
-                        CepsDiferentes =  CepsDiferentes - 1;
+                    if (podeAdicionar)
+                    {
+                        cep.add(cepEncontrado);
                     }
                 }
             }
@@ -70,11 +75,8 @@ public class QuestaoTres {
         arquivoLeitura.fechar();
 
         System.out.println("Número de linhas: " + contador);
-        System.out.println("Ceps únicos: " + cep.size());
-        System.out.println("Ceps Diferentes: " + CepsDiferentes);
-        System.out.println("Posicao = " + cep);
-        
-        
+        System.out.println("Quantidade de CEPs destinos: " + cep.size());
+        System.out.println("Os CEPs: " + cep);
     }
 
 }
