@@ -35,7 +35,7 @@ public class QuestaoTres
         // Arquivo de log que contém (ao que parece) 16455 emails
         ArquivoLeitura arquivoLeitura = new ArquivoLeitura("packages.txt");
 
-        int contador = 1;
+        int contador = 0;
         String linha = arquivoLeitura.lerLinha();
 
         while (linha != null)
