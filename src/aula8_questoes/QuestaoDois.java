@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package aula8_questoes;
 
 import java.util.HashMap;
@@ -27,7 +22,6 @@ import java.util.HashMap;
 
 public class QuestaoDois
 {
-
     private String[] string;
     private HashMap strings = new HashMap();
 
