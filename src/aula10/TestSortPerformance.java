@@ -37,7 +37,7 @@ public class TestSortPerformance
 
     public static void main(String[] args) throws Exception
     {
-        int n = 100;
+        int n = 10000;
         ArrayList<Integer> array1 = new ArrayList<Integer>();
         ArrayList<Integer> array2 = new ArrayList<Integer>();
 
