@@ -5,12 +5,9 @@
  */
 package aula11;
 
-import aula8.MyFileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.regex.Pattern;
 
 /**
  *
@@ -18,131 +15,127 @@ import java.util.regex.Pattern;
  */
 public class Dicionario
 {
-    public static double desvioPadrao(ArrayList<Double> valor) 
+
+    public static double desvioPadrao(ArrayList<Double> valor)
     {
         Double media = getMedia(valor);
         int tam = valor.size();
         Double desvPadrao = 0D;
-        for (Double vlr : valor) {
+        for (Double vlr : valor)
+        {
             Double aux = vlr - media;
             desvPadrao += aux * aux;
         }
         return Math.sqrt(desvPadrao / (tam - 1));
     }
-    
-    public static Double getMedia(List<Double> valor) 
+
+    public static Double getMedia(List<Double> valor)
     {
-        try 
+        try
         {
             return getSoma(valor) / valor.size();
-        } catch (NullPointerException e) 
+        } catch (NullPointerException e)
         {
             throw new IllegalArgumentException("The list has null values");
         }
     }
 
-    public static Double getSoma(List<Double> valor) 
+    public static Double getSoma(List<Double> valor)
     {
         Double soma = 0D;
-        for (int i = 0; i < valor.size(); i++) 
+        for (int i = 0; i < valor.size(); i++)
         {
             soma += valor.get(i);
         }
         return soma;
     }
-    
+
     public static void main(String[] args)
     {
-        MyFileReader f = new MyFileReader("ign-reviews.csv");
-        String s;
-        f.readLine();
-        s = f.readLine();
-        
-        String[] separado = s.split (Pattern.quote (";"));
-        
-        Map <String, Stats> dicionario = new HashMap ();
-        for (int i = 0; i < s.length(); i++)
+        ArquivoLeitura leitor = new ArquivoLeitura("C:\\TEMP\\ign-reviews.csv");
+        HashMap<String, Stats> dicionario = new HashMap();
+
+        leitor.lerLinha();
+        String linha = leitor.lerLinha();
+        while (linha != null)
         {
-            String ano = separado[8];
+            String[] valores = linha.split(";");
+
+            String ano = valores[8];
+
+            Stats estatisticas;
             if (dicionario.containsKey(ano))
             {
-                Stats estatisticas = dicionario.get(ano);
-                estatisticas.num_reviews++;
-                if (separado[7].compareTo("Y") == 0)
-                {
-                    estatisticas.num_editor_choice++;
-                }
-                if (separado[1].compareTo("Amazing") == 0 || separado[1].compareTo("Masterpiece") == 0)
-                {
-                    estatisticas.num_amazing++;
-                }
-                estatisticas.total_scores += Double.parseDouble(separado[5]);
-                estatisticas.media_scores = estatisticas.num_reviews / estatisticas.total_scores;
-                
-                //estatisticas.lista_scores.add(Double.parseDouble(separado[5]));
-                
-                if (Double.parseDouble(separado[5]) > estatisticas.nota_melhor_jogo)
-                {
-                    estatisticas.melhor_jogo = separado[2];
-                }
-                
-                if (Double.parseDouble(separado[5]) < estatisticas.nota_pior_jogo)
-                {
-                    estatisticas.pior_jogo = separado[2];
-                }
-                
-                dicionario.put(ano, estatisticas);
-            }
-            else
+                estatisticas = dicionario.get(ano);
+            } else
             {
-                Stats estatisticas = new Stats();
-                
-                estatisticas.ano = Integer.parseInt(separado[8]);
-                estatisticas.num_reviews++;
-                if (separado[7].compareTo("Y") == 0)
-                {
-                    estatisticas.num_editor_choice++;
-                }
-                if (separado[1].compareTo("Amazing") == 0 || separado[1].compareTo("Masterpiece") == 0)
-                {
-                    estatisticas.num_amazing++;
-                }
-                estatisticas.total_scores += Double.parseDouble(separado[5]);
-                
-                estatisticas.lista_scores.add(Double.parseDouble(separado[5]));
-                
-                if (Double.parseDouble(separado[5]) > estatisticas.nota_melhor_jogo)
-                {
-                    estatisticas.melhor_jogo = separado[2];
-                }
-                
-                if (Double.parseDouble(separado[5]) < estatisticas.nota_pior_jogo)
-                {
-                    estatisticas.pior_jogo = separado[2];
-                }
-                
-                dicionario.put(ano, estatisticas);
+                estatisticas = new Stats();
+                estatisticas.setPior_jogo(valores[2]);
             }
 
-            s = f.readLine();
+            //estatisticas.ano = Integer.parseInt(valores[8]);
+            //estatisticas.num_reviews++;
+            estatisticas.setNum_reviews(estatisticas.getNum_reviews() + 1);
+            
+            if (valores[7].compareTo("Y") == 0)
+            {
+                //estatisticas.num_editor_choice++;
+                estatisticas.setNum_editor_choice(estatisticas.getNum_editor_choice() + 1);
+            }
+            if (valores[1].compareTo("Amazing") == 0 || valores[1].compareTo("Masterpiece") == 0)
+            {
+                //estatisticas.num_amazing++;
+                estatisticas.setNum_amazing(estatisticas.getNum_amazing() + 1);
+            }
+            //estatisticas.total_scores += Double.parseDouble(valores[5]);
+            estatisticas.setTotal_scores(estatisticas.getTotal_scores() + Double.parseDouble(valores[5]));
+
+            //estatisticas.lista_scores.add(Double.parseDouble(valores[5]));
+            ArrayList<Double> lista_scores = estatisticas.getLista_scores();
+            lista_scores.add(Double.parseDouble(valores[5]));
+            estatisticas.setLista_scores(lista_scores);
+
+            if (Double.parseDouble(valores[5]) > estatisticas.nota_melhor_jogo)
+            {
+                //estatisticas.melhor_jogo = valores[2];
+                estatisticas.setMelhor_jogo(valores[2]);
+            }
+
+            if (Double.parseDouble(valores[5]) < estatisticas.nota_pior_jogo)
+            {
+                //estatisticas.pior_jogo = valores[2];
+                estatisticas.setPior_jogo(valores[2]);
+            }
+
+            dicionario.put(ano, estatisticas);
+
+            linha = leitor.lerLinha();
         }
+
+        double desvioPadrao = 0;
+        double scores = 0;
+        int i = 0;
         
         //System.out.println(dicionario.get("2012"));
-        
-        
-        
         for (String ano : dicionario.keySet())
         {
-            Stats estatisticas = dicionario.get(ano);
-            System.out.print("Ano: "+estatisticas.ano);
-            System.out.print("; Número reviews: "+estatisticas.num_reviews);
-            System.out.print("; Percent Amazing ou Masterpiece: "+(estatisticas.num_amazing / estatisticas.num_reviews) * 100);
-            System.out.print("; Media Scores: "+estatisticas.num_reviews / estatisticas.total_scores);
-            System.out.print("; Desvio padrão scores: "+desvioPadrao(estatisticas.lista_scores));
-            System.out.print("; Melhor Jogo: "+estatisticas.melhor_jogo);
-            System.out.print("; Pior Jogo: "+estatisticas.pior_jogo);
+            Stats e = dicionario.get(ano);
+            double num_amazing = e.getNum_amazing();
+            double num_reviews = e.getNum_reviews();
+            double total_scores = e.getTotal_scores();
+            
+            System.out.print("Ano: " + ano);
+            System.out.print("| Número reviews: " + num_reviews);
+            System.out.print("| Percent Amazing ou Masterpiece: " + (num_amazing/num_reviews) * 100);
+            System.out.print("| Media Scores: " + total_scores/num_reviews);
+            System.out.print("| Desvio padrão scores: " + desvioPadrao(e.getLista_scores()));
+            desvioPadrao += desvioPadrao(e.getLista_scores());
+            
+            System.out.print("| Melhor Jogo: " + e.getMelhor_jogo());
+            System.out.println("| Pior Jogo: " + e.getPior_jogo());
         }
-        
-        f.close();
+
+
+        leitor.fechar();
     }
 }
