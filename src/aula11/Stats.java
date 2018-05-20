@@ -19,6 +19,7 @@ public class Stats
     private int num_amazing = 0;
     private double total_scores = 0;
     private double media_scores = 0;
+    
     private ArrayList<Double> lista_scores;
 
     public int getAno()

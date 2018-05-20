@@ -57,6 +57,15 @@ public class Dicionario
 
         leitor.lerLinha();
         String linha = leitor.lerLinha();
+        
+        //
+        // Continaur aqui a parte geral do trabalho .....
+        //
+        double mediaReviews = 0;
+        int contadorReviews = 0;
+        double desvioPadraoTodos = 0;
+        int contadorJogosAction = 0;
+                
         while (linha != null)
         {
             String[] valores = linha.split(";");
@@ -73,6 +82,9 @@ public class Dicionario
                 estatisticas.setPior_jogo(valores[2]);
             }
 
+            contadorReviews++;
+            mediaReviews += Double.parseDouble(valores[5]);
+            
             //estatisticas.ano = Integer.parseInt(valores[8]);
             //estatisticas.num_reviews++;
             estatisticas.setNum_reviews(estatisticas.getNum_reviews() + 1);
