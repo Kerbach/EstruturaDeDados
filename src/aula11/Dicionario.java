@@ -61,10 +61,11 @@ public class Dicionario
         //
         // Continaur aqui a parte geral do trabalho .....
         //
-        double mediaReviews = 0;
+        double totalReviews = 0;
         int contadorReviews = 0;
         double desvioPadraoTodos = 0;
-        int contadorJogosAction = 0;
+        String anoMaisAction  = "";
+        ArrayList<Double> scores_total = new ArrayList<Double>();
                 
         while (linha != null)
         {
@@ -83,11 +84,16 @@ public class Dicionario
             }
 
             contadorReviews++;
-            mediaReviews += Double.parseDouble(valores[5]);
+            totalReviews += Double.parseDouble(valores[5]);
             
             //estatisticas.ano = Integer.parseInt(valores[8]);
             //estatisticas.num_reviews++;
             estatisticas.setNum_reviews(estatisticas.getNum_reviews() + 1);
+            
+            if (valores[6].contains("Action"))
+            {
+                estatisticas.setNum_jogos_action(estatisticas.getNum_jogos_action() + 1);
+            }
             
             if (valores[7].compareTo("Y") == 0)
             {
@@ -105,6 +111,9 @@ public class Dicionario
             //estatisticas.lista_scores.add(Double.parseDouble(valores[5]));
             ArrayList<Double> lista_scores = estatisticas.getLista_scores();
             lista_scores.add(Double.parseDouble(valores[5]));
+            
+            scores_total.add(Double.parseDouble(valores[5]));
+            
             estatisticas.setLista_scores(lista_scores);
 
             if (Double.parseDouble(valores[5]) > estatisticas.nota_melhor_jogo)
@@ -129,12 +138,19 @@ public class Dicionario
         int i = 0;
         
         //System.out.println(dicionario.get("2012"));
+        int generoMaior = 0;
         for (String ano : dicionario.keySet())
         {
             Stats e = dicionario.get(ano);
             double num_amazing = e.getNum_amazing();
             double num_reviews = e.getNum_reviews();
             double total_scores = e.getTotal_scores();
+            
+            double action = e.getNum_jogos_action();
+            if (action > generoMaior)
+            {
+                anoMaisAction = String.valueOf(ano);
+            }
             
             System.out.print("Ano: " + ano);
             System.out.print("| Número reviews: " + num_reviews);
@@ -146,7 +162,10 @@ public class Dicionario
             System.out.print("| Melhor Jogo: " + e.getMelhor_jogo());
             System.out.println("| Pior Jogo: " + e.getPior_jogo());
         }
-
+        
+        System.out.println("| Ano com mais jogos Action: " + anoMaisAction);
+        System.out.println("| Média de pontuação dos reviews: " + totalReviews / contadorReviews);
+        System.out.println("| Desvio pardão de todos os reviews: " + desvioPadrao(scores_total));
 
         leitor.fechar();
     }

@@ -19,6 +19,12 @@ public class Stats
     private int num_amazing = 0;
     private double total_scores = 0;
     private double media_scores = 0;
+    public double nota_melhor_jogo = 0;
+    public String melhor_jogo = "";
+    public double nota_pior_jogo = 0;
+    public String pior_jogo = "";
+    public double num_jogos_action = 0;
+    public double media_desvio_scores = 0;
     
     private ArrayList<Double> lista_scores;
 
@@ -151,12 +157,6 @@ public class Stats
     {
         this.media_desvio_scores = media_desvio_scores;
     }
-    public double nota_melhor_jogo = 0;
-    public String melhor_jogo = "";
-    public double nota_pior_jogo = 0;
-    public String pior_jogo = "";
-    public double num_jogos_action = 0;
-    public double media_desvio_scores = 0;
 
     public Stats()
     {
