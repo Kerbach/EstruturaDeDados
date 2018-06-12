@@ -1,0 +1,50 @@
+package aula14.Exercicio3;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+
+
+
+public class Exercicio3
+{
+
+    public static void main(String[] args) throws FileNotFoundException, IOException
+    {
+
+        HashMap<String, Integer> tm = new HashMap<String, Integer>();
+
+        FileReader fileReader = new FileReader("packages.txt");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+        String linha = bufferedReader.readLine();
+        while (bufferedReader.ready())
+        {
+            String[] cep = linha.split(" ");
+
+            if (tm.containsKey(cep[0]))
+            {
+                tm.put(cep[0], tm.get(cep[0]) + 1);
+            } else
+            {
+                tm.put(cep[0], 1);
+            }
+
+            linha = bufferedReader.readLine();
+        }
+
+        ArrayList<Cep> arrayCeps = new ArrayList<Cep>();
+
+        for (String k : tm.keySet())
+        {
+            arrayCeps.add(new Cep(k, tm.get(k)));
+        }
+
+        Collections.sort(arrayCeps);
+        System.out.println(arrayCeps);
+    }
+}

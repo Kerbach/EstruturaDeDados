@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package aula14;
+package aula14.Exercicio1;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +12,7 @@ import java.util.Collections;
  *
  * @author wrkerber
  */
-public class TestPessoa
+public class Exercicio1
 {
     public static void main(String[] args)
     {
