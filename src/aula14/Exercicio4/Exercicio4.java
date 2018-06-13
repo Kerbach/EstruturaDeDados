@@ -14,7 +14,7 @@ public class Exercicio4
     public static void main(String[] args) throws FileNotFoundException, IOException
     {
 
-        TreeMap<String, Double> treeMap = new TreeMap<String, Double>();
+        TreeMap<String, Double> ceps = new TreeMap<String, Double>();
 
         FileReader fileReader = new FileReader("packages.txt");
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -24,12 +24,14 @@ public class Exercicio4
         {
             String[] cep = linha.split(" ");
 
-            if (treeMap.containsKey(cep[0]))
+            if (ceps.containsKey(cep[0]))
             {
-                treeMap.put(cep[0], treeMap.get(cep[0]) + Double.parseDouble(cep[1]));
-            } else
+                ceps.put(cep[0], ceps.get(cep[0]) + Double.parseDouble(cep[1]));
+            } 
+            else
             {
-                treeMap.put(cep[0], Double.parseDouble(cep[1]));
+                ceps.put(cep[0], Double.parseDouble(cep[1]));
+                //System.out.println(cep[0] +" "+ Double.parseDouble(cep[1]));
             }
 
             linha = bufferedReader.readLine();
@@ -37,9 +39,9 @@ public class Exercicio4
 
         ArrayList<Cep> arrayCeps = new ArrayList<Cep>();
 
-        for (String k : treeMap.keySet())
+        for (String k : ceps.keySet())
         {
-            arrayCeps.add(new Cep(k, treeMap.get(k)));
+            arrayCeps.add(new Cep(k, ceps.get(k)));
         }
 
         Collections.sort(arrayCeps);

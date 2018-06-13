@@ -4,25 +4,25 @@ public class Cep implements Comparable<Cep>
 {
 
     private String cep;
-    private double sum;
+    private double soma;
 
     public Cep(String cep, double sum)
     {
         this.cep = cep;
-        this.sum = sum;
+        this.soma = sum;
     }
 
     public int compareTo(Cep c)
     {
-        if (this.sum != c.sum)
+        if (this.soma != c.soma)
         {
-            return (int) (c.sum - this.sum);
+            return (int) (c.soma - this.soma);
         }
-        return (int) (this.sum - c.sum);
+        return (int) (this.soma - c.soma);
     }
 
     public String toString()
     {
-        return ("[" + this.cep + " " + this.sum + "]");
+        return ("[" + this.cep + " " + this.soma + "]");
     }
 }

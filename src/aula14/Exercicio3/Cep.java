@@ -13,11 +13,19 @@ public class Cep implements Comparable<Cep>
 
     public int compareTo(Cep c)
     {
-        if (this.count != c.count)
+        if (this.cep.compareTo(c.cep) != 0)
         {
-            return (c.count - this.count);
+            return this.cep.compareTo(c.cep);
         }
-        return (this.count - c.count);
+        else if (this.count != c.count)
+        {
+            return this.count - c.count;
+        }
+        else
+        {
+            return 0;
+        }
+        
     }
 
     public String toString()

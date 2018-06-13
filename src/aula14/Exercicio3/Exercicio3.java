@@ -12,11 +12,9 @@ import java.util.HashMap;
 
 public class Exercicio3
 {
-
     public static void main(String[] args) throws FileNotFoundException, IOException
     {
-
-        HashMap<String, Integer> tm = new HashMap<String, Integer>();
+        HashMap<String, Integer> ceps = new HashMap<String, Integer>();
 
         FileReader fileReader = new FileReader("packages.txt");
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -26,12 +24,12 @@ public class Exercicio3
         {
             String[] cep = linha.split(" ");
 
-            if (tm.containsKey(cep[0]))
+            if (ceps.containsKey(cep[0]))
             {
-                tm.put(cep[0], tm.get(cep[0]) + 1);
+                ceps.put(cep[0], ceps.get(cep[0]) + 1);
             } else
             {
-                tm.put(cep[0], 1);
+                ceps.put(cep[0], 1);
             }
 
             linha = bufferedReader.readLine();
@@ -39,9 +37,9 @@ public class Exercicio3
 
         ArrayList<Cep> arrayCeps = new ArrayList<Cep>();
 
-        for (String k : tm.keySet())
+        for (String k : ceps.keySet())
         {
-            arrayCeps.add(new Cep(k, tm.get(k)));
+            arrayCeps.add(new Cep(k, ceps.get(k)));
         }
 
         Collections.sort(arrayCeps);
