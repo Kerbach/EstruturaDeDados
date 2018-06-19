@@ -8,37 +8,37 @@ public class BatchSort
 
     public static void main(String[] args)
     {
-        ArrayList<Integer> array1 = readTxtNumber("src\\lista2\\numbers-1.txt");
+        ArrayList<Integer> array1 = readTxtNumber("src\\aula16\\numbers-1.txt");
         Collections.sort(array1);
-        writeTxt("src\\lista2\\partial-1.txt", array1);
+        writeTxt("src\\aula16\\partial-1.txt", array1);
 
-        ArrayList<Integer> array2 = readTxtNumber("src\\lista2\\numbers-2.txt");
+        ArrayList<Integer> array2 = readTxtNumber("src\\aula16\\numbers-2.txt");
         Collections.sort(array2);
-        writeTxt("src\\lista2\\partial-2.txt", array2);
+        writeTxt("src\\aula16\\partial-2.txt", array2);
 
     }
 
     public static ArrayList<Integer> readTxtNumber(String address)
     {
-        Reader myReader = new Reader(address);
+        MyReader read = new MyReader(address);
         ArrayList<Integer> array1 = new ArrayList<Integer>();
-        String aux = myReader.readLine();
-        while (aux != null)
+        String auxiliar = read.readLine();
+        while (auxiliar != null)
         {
-            array1.add(Integer.parseInt(aux));
-            aux = myReader.readLine();
+            array1.add(Integer.parseInt(auxiliar));
+            auxiliar = read.readLine();
         }
-        myReader.close();
+        read.close();
         return array1;
     }
 
-    public static void writeTxt(String address, ArrayList array1)
+    public static void writeTxt(String endereco, ArrayList array)
     {
-        Writer myWriter = new Writer(address);
-        for (int i = 0; i < array1.size(); i++)
+        MyWriter wtr = new MyWriter(endereco);
+        for (int i = 0; i < array.size(); i++)
         {
-            myWriter.writeLine(array1.get(i) + "");
+            wtr.writeLine(array.get(i) + "");
         }
-        myWriter.close();
+        wtr.close();
     }
 }

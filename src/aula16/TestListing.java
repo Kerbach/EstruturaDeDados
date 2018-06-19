@@ -10,7 +10,7 @@ public class TestListing
 {
     public static void main(String[] args)
     {
-        File diretorio = new File("src\\lista2");
+        File diretorio = new File("src\\aula16");
         File[] arquivos = diretorio.listFiles();
         List<File> fl = new ArrayList();
         fl.addAll(Arrays.asList(arquivos));

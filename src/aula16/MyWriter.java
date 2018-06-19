@@ -2,20 +2,20 @@ package aula16;
 
 import java.io.*;
 
-class Writer
+class MyWriter
 {
     private BufferedWriter buffwhr;
 
-    public Writer(String filename)
+    public MyWriter(String nome)
     {
         FileWriter file = null;
         try
         {
-            file = new FileWriter(filename);
+            file = new FileWriter(nome);
             buffwhr = new BufferedWriter(file);
         } catch (IOException e)
         {
-            System.err.println("Cannot write to file: " + filename);
+            System.err.println("Cannot write to file: " + nome);
         }
     }
 

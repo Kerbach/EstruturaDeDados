@@ -2,12 +2,12 @@ package aula16;
 
 import java.io.*;
 
-public class Reader
+public class MyReader
 {
 
     private BufferedReader buffRead;
 
-    public Reader(String filename)
+    public MyReader(String filename)
     {
         FileReader fileReader = null;
         try
