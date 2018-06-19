@@ -11,6 +11,8 @@ import java.util.TreeMap;
 public class Exercicio4
 {
 
+    // TESTE COM COMIT - GUSTAVO
+    
     public static void main(String[] args) throws FileNotFoundException, IOException
     {
 
