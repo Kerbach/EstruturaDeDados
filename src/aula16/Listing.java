@@ -8,39 +8,39 @@ import java.util.Date;
 public class Listing
 {
 
-    ArrayList<File> array_file;
+    ArrayList<File> array_arq;
 
     public Listing(String directory)
     {
-        array_file = new ArrayList<File>();
-        File[] vector_file = new File(directory).listFiles();
-        for (int x = 0; x <= vector_file.length - 1; x++)
+        array_arq = new ArrayList<File>();
+        File[] vetor_arq = new File(directory).listFiles();
+        for (int x = 0; x <= vetor_arq.length - 1; x++)
         {
-            array_file.add(vector_file[x]);
+            array_arq.add(vetor_arq[x]);
         }
     }
 
     public void listOriginal()
     {
-        Collections.sort(array_file);
-        System.out.println(array_file);
+        Collections.sort(array_arq);
+        System.out.println(array_arq);
     }
 
     public void listByDate()
     {
-        Collections.sort(array_file, new ListByDate());
-        for (File file : array_file)
+        Collections.sort(array_arq, new ListByDate());
+        for (File file : array_arq)
         {
-            System.out.println(file.getName() + " - modified: " + (new Date(file.lastModified()).toString()));
+            System.out.println(file.getName() + " - modificado: " + (new Date(file.lastModified()).toString()));
         };
     }
 
     public void listBySize()
     {
-        Collections.sort(array_file, new ListBySize());
-        for (File file : array_file)
+        Collections.sort(array_arq, new ListBySize());
+        for (File file : array_arq)
         {
-            System.out.println(file.getName() + " - size: " + file.length());
+            System.out.println(file.getName() + " - tamanho: " + file.length());
         }
     }
 }

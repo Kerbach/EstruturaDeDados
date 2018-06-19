@@ -10,22 +10,22 @@ public class TestListing
 {
     public static void main(String[] args)
     {
-        File directory = new File("src\\lista2");
-        File[] files = directory.listFiles();
-        List<File> f = new ArrayList();
-        f.addAll(Arrays.asList(files));
+        File diretorio = new File("src\\lista2");
+        File[] arquivos = diretorio.listFiles();
+        List<File> fl = new ArrayList();
+        fl.addAll(Arrays.asList(arquivos));
 
-        ListingRedux line = new ListingRedux();
-        Date dt;
-        for (int i = 0; i < f.size(); i++)
+        ListingRedux linha = new ListingRedux();
+        Date data;
+        for (int i = 0; i < fl.size(); i++)
         {
-            dt = new Date(line.sortByDate(f).get(i).lastModified());
-            System.out.println(" Name: " + line.sortByDate(f).get(i).getName() + " || Date: " + dt);
+            data = new Date(linha.sortByDate(fl).get(i).lastModified());
+            System.out.println(" Nome: " + linha.sortByDate(fl).get(i).getName() + " || Data: " + data);
         }
         System.out.println("");
-        for (int i = 0; i < f.size(); i++)
+        for (int i = 0; i < fl.size(); i++)
         {
-            System.out.println(" Name: " + line.sortBySize(f).get(i).getName() + " || Size: " + line.sortBySize(f).get(i).length() + " bytes. ");
+            System.out.println(" Nome: " + linha.sortBySize(fl).get(i).getName() + " || Tamanho: " + linha.sortBySize(fl).get(i).length() + " bytes. ");
         }
     }
 }
