@@ -8,13 +8,13 @@ public class BatchSort
 
     public static void main(String[] args)
     {
-        ArrayList<Integer> array1 = readTxtNumber("src\\aula16\\numbers-1.txt");
+        ArrayList<Integer> array1 = readTxtNumber("src//aula16//numbers-1.txt");
         Collections.sort(array1);
-        writeTxt("src\\aula16\\partial-1.txt", array1);
+        writeTxt("src//aula16//partial-1.txt", array1);
 
-        ArrayList<Integer> array2 = readTxtNumber("src\\aula16\\numbers-2.txt");
+        ArrayList<Integer> array2 = readTxtNumber("src//aula16//numbers-2.txt");
         Collections.sort(array2);
-        writeTxt("src\\aula16\\partial-2.txt", array2);
+        writeTxt("src//aula16//partial-2.txt", array2);
 
     }
 
